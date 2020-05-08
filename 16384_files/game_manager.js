@@ -1,5 +1,5 @@
 function GameManager(size, InputManager, Actuator, ScoreManager) {
-  this.size         = 4; // Size of the grid
+  this.size         = 5; // Size of the grid
   this.inputManager = new InputManager;
   this.scoreManager = new ScoreManager;
   this.actuator     = new Actuator;
@@ -43,7 +43,7 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
-      var value = Math.random() < 0.9 ? 2 : 4;
+      var value = Math.random() < 0.9 ? 2 : 3;
     var tile = new Tile(this.grid.randomAvailableCell(), value);
 
     this.grid.insertTile(tile);
@@ -122,8 +122,8 @@ GameManager.prototype.move = function (direction) {
           // Update the score
           self.score += merged.value;
 
-          // The mighty 16384 tile
-          if (merged.value === 16384) self.won = true;
+          // The mighty 512 tile
+          if (merged.value === 512) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }
